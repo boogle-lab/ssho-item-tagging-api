@@ -36,16 +36,29 @@ def run_model(data_dir, init_model = None):
     model.save('model.h5')
     return hist
 
-def Modeling():
-    model = Sequential()
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPool2D((2, 2)))
-    model.add(Dropout(0.5))
+def Modeling(option=2):
+    if option == 1 :
+        model = Sequential()
+        model.add(Conv2D(64, (3, 3), activation='relu'))
+        model.add(MaxPool2D((2, 2)))
+        model.add(Dropout(0.5))
 
-    model.add(Flatten())
-    model.add(Dense(5, activation='softmax'))
-    model.compile(loss='categorical_crossentropy',
-                  optimizer='adam',
-                  metrics=['accuracy'])
+        model.add(Flatten())
+        model.add(Dense(5, activation='softmax'))
+        model.compile(loss='categorical_crossentropy',
+                      optimizer='adam',
+                      metrics=['accuracy'])
+
+    elif option == 2 :
+        resnet = tf.keras.applications.ResNet(
+            include_top=False, weights='imagenet', input_shape=(IMG_SIZE, IMG_SIZE, 3),
+        )
+        x = Dense(20, activation='relu')(resnet)
+        outputs = Dense(8, activation='softmax')(x)
+
+        model = tf.keras.Model(inputs=resnet, outputs=outputs)
+        model.compile(loss='categorical_crossentropy',
+                      optimizer = 'adam',
+                      metrics=['accuracy'])
     # model.summary()
     return model
