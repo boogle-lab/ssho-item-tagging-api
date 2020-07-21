@@ -16,8 +16,8 @@ def login():
 
     driver.implicitly_wait(3)
 
-    driver.find_element_by_xpath('//*[@id="email"]').send_keys('liruien3430@naver.com')
-    driver.find_element_by_xpath('//*[@id="password"]').send_keys('ssho2323')
+    driver.find_element_by_xpath('//*[@id="email"]').send_keys('***********')
+    driver.find_element_by_xpath('//*[@id="password"]').send_keys('*******')
 
     driver.find_element_by_xpath('//*[@id="__PWS_ROOT__"]/div[1]/div/div/div/div[1]/div[2]/div[2]/div/div/div/div[1]/div/div/div/div[3]/form/div[5]/button').send_keys(Keys.ENTER)
 
