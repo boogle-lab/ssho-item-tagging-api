@@ -1,4 +1,4 @@
-from models.modeling import run_model
+from ssho.ssho-item-tagging-api.models.modeling import run_model
 
 # # run example(without pretrained model)
 # hist = run_model('/home/yeeunlee/ssho/data/fdata')
