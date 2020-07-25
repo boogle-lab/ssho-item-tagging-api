@@ -18,6 +18,7 @@ class dataset():
         for img in imgs:
             resized.append(cv2.resize(img, (size, size)))
         return resized
+
     def load_dataset(self):
         images = []
         labels = []

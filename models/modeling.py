@@ -23,14 +23,14 @@ def run_model(data_dir, init_model = None):
         hist = model.fit(train, label,
                          validation_split=0.1,
                          verbose=1,
-                         epochs=10,
+                         epochs=30,
                          batch_size=32)
     else:
         model = Modeling()
         hist = model.fit(train, label,
                          validation_split=0.1,
                          verbose=1,
-                         epochs=10,
+                         epochs=30,
                          batch_size=32)
     # model.summary()
     model.save('model.h5')
@@ -50,13 +50,14 @@ def Modeling(option=2):
                       metrics=['accuracy'])
 
     elif option == 2 :
-        resnet = tf.keras.applications.ResNet(
+        resnet = tf.keras.applications.ResNet50(
             include_top=False, weights='imagenet', input_shape=(IMG_SIZE, IMG_SIZE, 3),
         )
-        x = Dense(20, activation='relu')(resnet)
-        outputs = Dense(8, activation='softmax')(x)
+        x = Flatten()(resnet.layers[-1].output)
+        x = Dense(20, activation='relu')(x)
+        outputs = Dense(5, activation='softmax')(x)
 
-        model = tf.keras.Model(inputs=resnet, outputs=outputs)
+        model = tf.keras.Model(inputs=resnet.input, outputs=outputs)
         model.compile(loss='categorical_crossentropy',
                       optimizer = 'adam',
                       metrics=['accuracy'])
