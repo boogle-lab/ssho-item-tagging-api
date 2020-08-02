@@ -16,6 +16,7 @@
 
 > **20.08.02** add predict.py
 >- dataset
->-- validation_pic : 임의 쇼핑몰 사진 2장
->-- txt_data : class별 pinterest 크롤링 이미지 url 포함
->-- 8dataset.zip : 실제 이미지 데이터 포함. unzip 후 사용
+>- validation_pic : 임의 쇼핑몰 사진 2장
+>- txt_data : class별 pinterest 크롤링 이미지 url 포함
+>- 8dataset.zip : 실제 이미지 데이터 포함. unzip 후 사용
+>- 
