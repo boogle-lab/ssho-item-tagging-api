@@ -13,3 +13,9 @@
 >- url dataframe으로 저장
 >- url_to_image 함수 업로드
 >- 샘플 데이터 '힙합패션.csv', '클래식패션.csv'업로드
+
+> **20.08.02** add predict.py
+>- dataset
+>--validation_pic : 임의 쇼핑몰 사진 2장
+>--txt_data : class별 pinterest 크롤링 이미지 url 포함
+>--8dataset.zip : 실제 이미지 데이터 포함. unzip 후 사용
