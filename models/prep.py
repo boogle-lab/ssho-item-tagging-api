@@ -7,6 +7,7 @@ import os
 
 IMG_SIZE = 64
 N_CHANNELS = 3
+N_CLASSES = 8
 
 # Only train
 class dataset():
@@ -22,7 +23,7 @@ class dataset():
     def load_dataset(self):
         images = []
         labels = []
-        for i in tqdm(range(5)):
+        for i in tqdm(range(N_CLASSES)):
             dir = os.listdir(self.base_dir)[i]
             path = os.path.join(self.base_dir, dir)
             for img in os.listdir(path):

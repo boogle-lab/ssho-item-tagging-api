@@ -16,7 +16,7 @@ def run_model(data_dir, init_model = None):
     :return: Training History
     """
     train, label = dataset(base_dir=data_dir).get_data()
-    label = tf.keras.utils.to_categorical(label, 5)
+    label = tf.keras.utils.to_categorical(label, 8)
     print(len(train))
     if init_model:
         model = tf.keras.models.load_model(init_model)
@@ -30,13 +30,13 @@ def run_model(data_dir, init_model = None):
         hist = model.fit(train, label,
                          validation_split=0.1,
                          verbose=1,
-                         epochs=30,
+                         epochs=10,
                          batch_size=32)
     # model.summary()
     model.save('model.h5')
     return hist
 
-def Modeling(option=2):
+def Modeling(option=1):
     if option == 1 :
         model = Sequential()
         model.add(Conv2D(64, (3, 3), activation='relu'))
@@ -44,7 +44,7 @@ def Modeling(option=2):
         model.add(Dropout(0.5))
 
         model.add(Flatten())
-        model.add(Dense(5, activation='softmax'))
+        model.add(Dense(8, activation='softmax'))
         model.compile(loss='categorical_crossentropy',
                       optimizer='adam',
                       metrics=['accuracy'])
@@ -55,11 +55,11 @@ def Modeling(option=2):
         )
         x = Flatten()(resnet.layers[-1].output)
         x = Dense(20, activation='relu')(x)
-        outputs = Dense(5, activation='softmax')(x)
+        outputs = Dense(8, activation='softmax')(x)
 
         model = tf.keras.Model(inputs=resnet.input, outputs=outputs)
         model.compile(loss='categorical_crossentropy',
-                      optimizer = 'adam',
+                      optimizer ='adam',
                       metrics=['accuracy'])
     # model.summary()
     return model
