@@ -1,5 +1,4 @@
-pip==20.2
-tensorflow==2.1.0
-opencv-python==4.3.0
+tensorflow==2.0.0
+opencv-python
 flask
-numpy==1.18.5
+numpy

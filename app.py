@@ -13,22 +13,21 @@ app.config['JSON_AS_ASCII'] = False
 flask_host = "0.0.0.0"
 flask_port = "5000"
 
+
 @app.route("/tagging", methods=['GET'])
 def item_tagging():
-
     url = ""
 
     ## TODO: url을 읽어서 아래에 resize함수에서 처리할수 있도록 부탁드립니다.
 
+    # 현재 test data
+    classes = {0: 'casual', 1: 'cute', 2: 'genderless', 3: 'hip', 4: 'modern',
+               5: 'monotone', 6: 'street', 7: 'vintage'}
 
-    #현재 test data
-    classes = {0 : 'casual', 1 : 'cute', 2 : 'genderless', 3:'hip', 4:'modern',
-               5:'monotone', 6:'street', 7:'vintage'}
-
-    #image 경로에서 이미지를 불러와 resize된 이미지 array return
+    # image 경로에서 이미지를 불러와 resize된 이미지 array return
     image = resize('./data/validation_pic/carhartt overall.jpg')
 
-    #weight : model.h5 / image : esized image
+    # weight : model.h5 / image : esized image
     predicted = pretrained("model.h5", image)
 
     print(predicted, classes[predicted[0]])
@@ -37,7 +36,7 @@ def item_tagging():
 
     return tag
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # Run Flask Server
     app.run(host=flask_host, port=flask_port, debug=True)
