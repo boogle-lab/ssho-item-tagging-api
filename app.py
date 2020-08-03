@@ -13,10 +13,13 @@ app.config['JSON_AS_ASCII'] = False
 flask_host = "0.0.0.0"
 flask_port = "5000"
 
-@app.route("/tagging", methods=['POST'])
+@app.route("/tagging", methods=['GET'])
 def item_tagging():
 
-    data = request.get_json()
+    url = ""
+
+    ## TODO: url을 읽어서 아래에 resize함수에서 처리할수 있도록 부탁드립니다.
+
 
     #현재 test data
     classes = {0 : 'casual', 1 : 'cute', 2 : 'genderless', 3:'hip', 4:'modern',
@@ -30,7 +33,7 @@ def item_tagging():
 
     print(predicted, classes[predicted[0]])
 
-    tag = classes[predicted[0]];
+    tag = classes[predicted[0]]
 
     return tag
 
