@@ -33,21 +33,26 @@ def url_to_img(url):
 @app.route("/tagging", methods=['GET'])
 def item_tagging():
 
-    # request parameter
-    url = request.args.get('url')
+    try:
+        # request parameter
+        url = request.args.get('url')
 
-    image = resize(url_to_img(url))
+        image = url_to_img(url)
+        resized_image = resize(image)
 
-    # 현재 test data
-    classes = {0: 'casual', 1: 'cute', 2: 'genderless', 3: 'hip', 4: 'modern',
-               5: 'monotone', 6: 'street', 7: 'vintage'}
+        # 현재 test data
+        classes = {0: 'casual', 1: 'cute', 2: 'genderless', 3: 'hip', 4: 'modern',
+                   5: 'monotone', 6: 'street', 7: 'vintage'}
 
-    # weight : model.h5 / image : resized image
-    predicted = pretrained("model.h5", image)
+        # weight : model.h5 / image : resized image
+        predicted = pretrained("model.h5", resized_image)
 
-    tag = classes[predicted[0]]
+        tag = classes[predicted[0]]
 
-    return tag
+        return tag
+
+    except:
+        return ""
 
 
 if __name__ == "__main__":
